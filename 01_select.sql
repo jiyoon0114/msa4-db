@@ -63,7 +63,7 @@ SELECT
 FROM employees
 WHERE
 	(
-			birth >= '1990-01-01'
+	birth >= '1990-01-01'
 	AND   birth <= '1990-12-31'
 	)
 	OR 	`name` = '정유리'
@@ -211,12 +211,12 @@ WHERE
 	end_at IS null
 ;
 
--- distinct 키워드: 검생결과에서 중복되는 레코드 없이 조회
+-- distinct 키워드: 검색결과에서 중복되는 레코드 없이 조회
 -- 	속도가 느려서 현업에서 잘 쓰지 않음 
 SELECT DISTINCT  
 	emp_id
 FROM salaries
-;	
+;
 
 -- group by절, having절
 -- group by절: 그룹으로 묶어서 조회
