@@ -1,4 +1,4 @@
--- SubQuery
+dbsample-- SubQuery
 
 -- --------------------
 -- where절에서 사용

@@ -1,6 +1,7 @@
 -- 1. 직급테이블의 모든 정보를 조회해주세요.
 SELECT *
-FROM titles;
+FROM titles
+;
 
 -- 2. 급여가 60,000,000 이하인 사원의 사번을 조회해 주세요.
 
@@ -41,15 +42,16 @@ ORDER BY `name`;
 	
 -- 7. 사원별 전체 급여의 평균을 조회해 주세요.
 SELECT
-	AVG(salary)
+	ceiling(AVG(salary))
 FROM salaries
-GROUP BY emp_id;
+GROUP BY emp_id
+;
 
 -- 8. 사원별 전체 급여의 평균이 30,000,000 ~ 50,000,000인,
 --   사원번호와 평균급여를 조회해 주세요.
 SELECT
 	emp_id
-	,AVG(salary)
+	,AVG(salary) avg_sal
 FROM salaries
 GROUP BY emp_id
 	HAVING 
@@ -60,10 +62,10 @@ GROUP BY emp_id
 --   사원의 사번, 이름, 성별을 조회해 주세요.
 
 SELECT 
-	emp_id
-	,`name`
-	,gender
-FROM employees
+	emp.emp_id
+	,emp.`name`
+	,emp.gender
+FROM employees emp
 WHERE emp_id IN (
 	SELECT emp_id
 	FROM salaries
@@ -75,13 +77,13 @@ WHERE emp_id IN (
 --   사원의 사원번호와 이름을 조회해 주세요.
 
 SELECT 
-	emp_id
-	,`name`
-FROM employees
+	emp.emp_id
+	,emp.`name`
+FROM employees emp
 WHERE emp_id IN (
-	SELECT emp_id
-	FROM title_emps
+	SELECT tie.emp_id
+	FROM title_emps tie
 	WHERE 
-		title_emps.title_code = 'T005'
-		AND title_emps.end_at IS NULL
+		tie.title_code = 'T005'
+		AND tie.end_at IS NULL
 );
