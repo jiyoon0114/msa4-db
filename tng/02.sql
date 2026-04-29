@@ -114,17 +114,16 @@ FROM salaries sal
 		ON emp.emp_id = tite.emp_id
 	JOIN titles tit
 		ON tite.title_code = tit.title_code
-WHERE 
-	tit.title = '부장'
-	and sal.end_at IS NULL
-	AND emp.fire_at IS NULL
-	AND tite.end_at IS NULL 
 GROUP BY tit.emp_id
+	HAVING 
+		tit.title = '부장'
+		and sal.end_at IS NULL
+		AND emp.fire_at IS NULL
+		AND tite.end_at IS NULL 
 ;
 
-
-SELECT
-	tie.emp_id
+SELECT  
+	tie.emp_id 
 	,AVG(sal.salary) avg_sal	
 FROM title_emps tie
 	JOIN titles tit
